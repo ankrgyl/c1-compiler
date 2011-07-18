@@ -1,0 +1,8 @@
+(* 1 *)
+nat main()
+{
+  nat x = 1;
+  x = succ(x);
+  x = pred(x);
+  return x;
+}

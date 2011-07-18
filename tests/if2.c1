@@ -1,0 +1,8 @@
+(* 2 *)
+nat main()
+{
+  bool b = true;
+  nat n = 0;
+  if (b) n = 2;
+  return n;
+}

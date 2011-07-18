@@ -1,0 +1,31 @@
+(* 60 *)
+
+bool not (bool b)
+{
+  bool temp = true;
+  if (b) temp = false;
+  return temp;
+}
+
+nat main ()
+{
+  nat x = 4;
+  nat y = 15;
+  nat z = 0;
+
+  nat x1 = x;
+  nat y1 = y;
+
+  while (not(isz(x1)))
+  {
+    y1 = y;
+    while (not(isz(y1)))
+    {
+      z = succ(z);
+      y1 = pred(y1);
+    }
+    x1 = pred(x1);
+  }
+
+  return z;
+}

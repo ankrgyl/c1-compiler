@@ -1,0 +1,26 @@
+(* 3 *)
+bool not (bool b)
+{
+  bool temp = true;
+  if (b) temp = false;
+  return temp;
+}
+
+nat bar ()
+{
+  return 2;
+}
+
+nat baz ()
+{
+  return 3;
+}
+
+nat main()
+{
+  bool b = true;
+  nat n = 0;
+  if (not(b)) n = bar ();
+  else n = baz ();
+  return n;
+}

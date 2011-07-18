@@ -1,0 +1,16 @@
+(* 1 *)
+
+bool ident(bool b) 
+{
+    return b;
+}
+
+nat main ()
+{
+  nat y = 0;
+  while (ident(false))
+  {
+      y = 0;
+  }
+  return y;
+}

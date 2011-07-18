@@ -1,0 +1,1044 @@
+1 shift/reduce conflict
+
+error:  state 79: shift/reduce conflict (shift ELSE, reduce by rule 23)
+
+state 0:
+
+	start : . program 
+
+	NAT	shift 5
+	BOOL	shift 4
+
+	start	goto 86
+	program	goto 3
+	fdef	goto 2
+	typ	goto 1
+
+	.	reduce by rule 1
+
+
+state 1:
+
+	fdef : typ . IDENT params block 
+
+	IDENT	shift 6
+
+
+	.	error
+
+
+state 2:
+
+	program : fdef . program 
+
+	NAT	shift 5
+	BOOL	shift 4
+
+	program	goto 7
+	fdef	goto 2
+	typ	goto 1
+
+	.	reduce by rule 1
+
+
+state 3:
+
+	start : program .  (reduce by rule 0)
+
+
+
+	.	reduce by rule 0
+
+
+state 4:
+
+	typ : BOOL .  (reduce by rule 5)
+
+
+
+	.	reduce by rule 5
+
+
+state 5:
+
+	typ : NAT .  (reduce by rule 4)
+
+
+
+	.	reduce by rule 4
+
+
+state 6:
+
+	fdef : typ IDENT . params block 
+
+	LPAREN	shift 9
+
+	params	goto 8
+
+	.	error
+
+
+state 7:
+
+	program : fdef program .  (reduce by rule 2)
+
+
+
+	.	reduce by rule 2
+
+
+state 8:
+
+	fdef : typ IDENT params . block 
+
+	LBRACE	shift 11
+
+	block	goto 10
+
+	.	error
+
+
+state 9:
+
+	params : LPAREN . RPAREN 
+	params : LPAREN . param paramsf RPAREN 
+
+	NAT	shift 5
+	BOOL	shift 4
+	RPAREN	shift 14
+
+	typ	goto 13
+	param	goto 12
+
+	.	error
+
+
+state 10:
+
+	fdef : typ IDENT params block .  (reduce by rule 3)
+
+
+
+	.	reduce by rule 3
+
+
+state 11:
+
+	block : LBRACE . decls_stms RBRACE 
+
+	IDENT	shift 25
+	NAT	shift 5
+	BOOL	shift 4
+	IF	shift 24
+	WHILE	shift 23
+	RETURN	shift 22
+	LBRACE	shift 11
+	SEMI	shift 21
+
+	typ	goto 20
+	block	goto 19
+	decls_stms	goto 18
+	decl	goto 17
+	stms	goto 16
+	stm	goto 15
+
+	.	reduce by rule 15
+
+
+state 12:
+
+	params : LPAREN param . paramsf RPAREN 
+
+	COMMA	shift 27
+
+	paramsf	goto 26
+
+	.	reduce by rule 8
+
+
+state 13:
+
+	param : typ . IDENT 
+
+	IDENT	shift 28
+
+
+	.	error
+
+
+state 14:
+
+	params : LPAREN RPAREN .  (reduce by rule 6)
+
+
+
+	.	reduce by rule 6
+
+
+state 15:
+
+	stms : stm . stms 
+
+	IDENT	shift 25
+	IF	shift 24
+	WHILE	shift 23
+	RETURN	shift 22
+	LBRACE	shift 11
+	SEMI	shift 21
+
+	block	goto 19
+	stms	goto 29
+	stm	goto 15
+
+	.	reduce by rule 15
+
+
+state 16:
+
+	decls_stms : stms .  (reduce by rule 13)
+
+
+
+	.	reduce by rule 13
+
+
+state 17:
+
+	decls_stms : decl . decls_stms 
+
+	IDENT	shift 25
+	NAT	shift 5
+	BOOL	shift 4
+	IF	shift 24
+	WHILE	shift 23
+	RETURN	shift 22
+	LBRACE	shift 11
+	SEMI	shift 21
+
+	typ	goto 20
+	block	goto 19
+	decls_stms	goto 30
+	decl	goto 17
+	stms	goto 16
+	stm	goto 15
+
+	.	reduce by rule 15
+
+
+state 18:
+
+	block : LBRACE decls_stms . RBRACE 
+
+	RBRACE	shift 31
+
+
+	.	error
+
+
+state 19:
+
+	stm : block .  (reduce by rule 21)
+
+
+
+	.	reduce by rule 21
+
+
+state 20:
+
+	decl : typ . IDENT EQUALS exp SEMI 
+
+	IDENT	shift 32
+
+
+	.	error
+
+
+state 21:
+
+	stm : SEMI .  (reduce by rule 17)
+
+
+
+	.	reduce by rule 17
+
+
+state 22:
+
+	stm : RETURN . exp SEMI 
+
+	IDENT	shift 44
+	TRUE	shift 43
+	FALSE	shift 42
+	ZERO	shift 41
+	NUMBER	shift 40
+	SUCC	shift 39
+	LPAREN	shift 38
+	ISZ	shift 37
+	PRED	shift 36
+
+	exp	goto 35
+	atomic_exp	goto 34
+	func_call	goto 33
+
+	.	error
+
+
+state 23:
+
+	stm : WHILE . LPAREN exp RPAREN stm 
+
+	LPAREN	shift 45
+
+
+	.	error
+
+
+state 24:
+
+	stm : IF . LPAREN exp RPAREN stm elsestm 
+
+	LPAREN	shift 46
+
+
+	.	error
+
+
+state 25:
+
+	stm : IDENT . EQUALS exp SEMI 
+
+	EQUALS	shift 47
+
+
+	.	error
+
+
+state 26:
+
+	params : LPAREN param paramsf . RPAREN 
+
+	RPAREN	shift 48
+
+
+	.	error
+
+
+state 27:
+
+	paramsf : COMMA . param paramsf 
+
+	NAT	shift 5
+	BOOL	shift 4
+
+	typ	goto 13
+	param	goto 49
+
+	.	error
+
+
+state 28:
+
+	param : typ IDENT .  (reduce by rule 10)
+
+
+
+	.	reduce by rule 10
+
+
+state 29:
+
+	stms : stm stms .  (reduce by rule 16)
+
+
+
+	.	reduce by rule 16
+
+
+state 30:
+
+	decls_stms : decl decls_stms .  (reduce by rule 12)
+
+
+
+	.	reduce by rule 12
+
+
+state 31:
+
+	block : LBRACE decls_stms RBRACE .  (reduce by rule 11)
+
+
+
+	.	reduce by rule 11
+
+
+state 32:
+
+	decl : typ IDENT . EQUALS exp SEMI 
+
+	EQUALS	shift 50
+
+
+	.	error
+
+
+state 33:
+
+	exp : func_call .  (reduce by rule 26)
+
+
+
+	.	reduce by rule 26
+
+
+state 34:
+
+	exp : atomic_exp .  (reduce by rule 25)
+
+
+
+	.	reduce by rule 25
+
+
+state 35:
+
+	stm : RETURN exp . SEMI 
+
+	SEMI	shift 51
+
+
+	.	error
+
+
+state 36:
+
+	atomic_exp : PRED . LPAREN exp RPAREN 
+
+	LPAREN	shift 52
+
+
+	.	error
+
+
+state 37:
+
+	atomic_exp : ISZ . LPAREN exp RPAREN 
+
+	LPAREN	shift 53
+
+
+	.	error
+
+
+state 38:
+
+	atomic_exp : LPAREN . exp RPAREN 
+
+	IDENT	shift 44
+	TRUE	shift 43
+	FALSE	shift 42
+	ZERO	shift 41
+	NUMBER	shift 40
+	SUCC	shift 39
+	LPAREN	shift 38
+	ISZ	shift 37
+	PRED	shift 36
+
+	exp	goto 54
+	atomic_exp	goto 34
+	func_call	goto 33
+
+	.	error
+
+
+state 39:
+
+	atomic_exp : SUCC . LPAREN exp RPAREN 
+
+	LPAREN	shift 55
+
+
+	.	error
+
+
+state 40:
+
+	atomic_exp : NUMBER .  (reduce by rule 36)
+
+
+
+	.	reduce by rule 36
+
+
+state 41:
+
+	atomic_exp : ZERO .  (reduce by rule 35)
+
+
+
+	.	reduce by rule 35
+
+
+state 42:
+
+	atomic_exp : FALSE .  (reduce by rule 34)
+
+
+
+	.	reduce by rule 34
+
+
+state 43:
+
+	atomic_exp : TRUE .  (reduce by rule 33)
+
+
+
+	.	reduce by rule 33
+
+
+state 44:
+
+	atomic_exp : IDENT .  (reduce by rule 32)
+	func_call : IDENT . func_args 
+
+	LPAREN	shift 57
+
+	func_args	goto 56
+
+	.	reduce by rule 32
+
+
+state 45:
+
+	stm : WHILE LPAREN . exp RPAREN stm 
+
+	IDENT	shift 44
+	TRUE	shift 43
+	FALSE	shift 42
+	ZERO	shift 41
+	NUMBER	shift 40
+	SUCC	shift 39
+	LPAREN	shift 38
+	ISZ	shift 37
+	PRED	shift 36
+
+	exp	goto 58
+	atomic_exp	goto 34
+	func_call	goto 33
+
+	.	error
+
+
+state 46:
+
+	stm : IF LPAREN . exp RPAREN stm elsestm 
+
+	IDENT	shift 44
+	TRUE	shift 43
+	FALSE	shift 42
+	ZERO	shift 41
+	NUMBER	shift 40
+	SUCC	shift 39
+	LPAREN	shift 38
+	ISZ	shift 37
+	PRED	shift 36
+
+	exp	goto 59
+	atomic_exp	goto 34
+	func_call	goto 33
+
+	.	error
+
+
+state 47:
+
+	stm : IDENT EQUALS . exp SEMI 
+
+	IDENT	shift 44
+	TRUE	shift 43
+	FALSE	shift 42
+	ZERO	shift 41
+	NUMBER	shift 40
+	SUCC	shift 39
+	LPAREN	shift 38
+	ISZ	shift 37
+	PRED	shift 36
+
+	exp	goto 60
+	atomic_exp	goto 34
+	func_call	goto 33
+
+	.	error
+
+
+state 48:
+
+	params : LPAREN param paramsf RPAREN .  (reduce by rule 7)
+
+
+
+	.	reduce by rule 7
+
+
+state 49:
+
+	paramsf : COMMA param . paramsf 
+
+	COMMA	shift 27
+
+	paramsf	goto 61
+
+	.	reduce by rule 8
+
+
+state 50:
+
+	decl : typ IDENT EQUALS . exp SEMI 
+
+	IDENT	shift 44
+	TRUE	shift 43
+	FALSE	shift 42
+	ZERO	shift 41
+	NUMBER	shift 40
+	SUCC	shift 39
+	LPAREN	shift 38
+	ISZ	shift 37
+	PRED	shift 36
+
+	exp	goto 62
+	atomic_exp	goto 34
+	func_call	goto 33
+
+	.	error
+
+
+state 51:
+
+	stm : RETURN exp SEMI .  (reduce by rule 22)
+
+
+
+	.	reduce by rule 22
+
+
+state 52:
+
+	atomic_exp : PRED LPAREN . exp RPAREN 
+
+	IDENT	shift 44
+	TRUE	shift 43
+	FALSE	shift 42
+	ZERO	shift 41
+	NUMBER	shift 40
+	SUCC	shift 39
+	LPAREN	shift 38
+	ISZ	shift 37
+	PRED	shift 36
+
+	exp	goto 63
+	atomic_exp	goto 34
+	func_call	goto 33
+
+	.	error
+
+
+state 53:
+
+	atomic_exp : ISZ LPAREN . exp RPAREN 
+
+	IDENT	shift 44
+	TRUE	shift 43
+	FALSE	shift 42
+	ZERO	shift 41
+	NUMBER	shift 40
+	SUCC	shift 39
+	LPAREN	shift 38
+	ISZ	shift 37
+	PRED	shift 36
+
+	exp	goto 64
+	atomic_exp	goto 34
+	func_call	goto 33
+
+	.	error
+
+
+state 54:
+
+	atomic_exp : LPAREN exp . RPAREN 
+
+	RPAREN	shift 65
+
+
+	.	error
+
+
+state 55:
+
+	atomic_exp : SUCC LPAREN . exp RPAREN 
+
+	IDENT	shift 44
+	TRUE	shift 43
+	FALSE	shift 42
+	ZERO	shift 41
+	NUMBER	shift 40
+	SUCC	shift 39
+	LPAREN	shift 38
+	ISZ	shift 37
+	PRED	shift 36
+
+	exp	goto 66
+	atomic_exp	goto 34
+	func_call	goto 33
+
+	.	error
+
+
+state 56:
+
+	func_call : IDENT func_args .  (reduce by rule 27)
+
+
+
+	.	reduce by rule 27
+
+
+state 57:
+
+	func_args : LPAREN . RPAREN 
+	func_args : LPAREN . exp func_argsf RPAREN 
+
+	IDENT	shift 44
+	TRUE	shift 43
+	FALSE	shift 42
+	ZERO	shift 41
+	NUMBER	shift 40
+	SUCC	shift 39
+	LPAREN	shift 38
+	RPAREN	shift 68
+	ISZ	shift 37
+	PRED	shift 36
+
+	exp	goto 67
+	atomic_exp	goto 34
+	func_call	goto 33
+
+	.	error
+
+
+state 58:
+
+	stm : WHILE LPAREN exp . RPAREN stm 
+
+	RPAREN	shift 69
+
+
+	.	error
+
+
+state 59:
+
+	stm : IF LPAREN exp . RPAREN stm elsestm 
+
+	RPAREN	shift 70
+
+
+	.	error
+
+
+state 60:
+
+	stm : IDENT EQUALS exp . SEMI 
+
+	SEMI	shift 71
+
+
+	.	error
+
+
+state 61:
+
+	paramsf : COMMA param paramsf .  (reduce by rule 9)
+
+
+
+	.	reduce by rule 9
+
+
+state 62:
+
+	decl : typ IDENT EQUALS exp . SEMI 
+
+	SEMI	shift 72
+
+
+	.	error
+
+
+state 63:
+
+	atomic_exp : PRED LPAREN exp . RPAREN 
+
+	RPAREN	shift 73
+
+
+	.	error
+
+
+state 64:
+
+	atomic_exp : ISZ LPAREN exp . RPAREN 
+
+	RPAREN	shift 74
+
+
+	.	error
+
+
+state 65:
+
+	atomic_exp : LPAREN exp RPAREN .  (reduce by rule 40)
+
+
+
+	.	reduce by rule 40
+
+
+state 66:
+
+	atomic_exp : SUCC LPAREN exp . RPAREN 
+
+	RPAREN	shift 75
+
+
+	.	error
+
+
+state 67:
+
+	func_args : LPAREN exp . func_argsf RPAREN 
+
+	COMMA	shift 77
+
+	func_argsf	goto 76
+
+	.	reduce by rule 30
+
+
+state 68:
+
+	func_args : LPAREN RPAREN .  (reduce by rule 28)
+
+
+
+	.	reduce by rule 28
+
+
+state 69:
+
+	stm : WHILE LPAREN exp RPAREN . stm 
+
+	IDENT	shift 25
+	IF	shift 24
+	WHILE	shift 23
+	RETURN	shift 22
+	LBRACE	shift 11
+	SEMI	shift 21
+
+	block	goto 19
+	stm	goto 78
+
+	.	error
+
+
+state 70:
+
+	stm : IF LPAREN exp RPAREN . stm elsestm 
+
+	IDENT	shift 25
+	IF	shift 24
+	WHILE	shift 23
+	RETURN	shift 22
+	LBRACE	shift 11
+	SEMI	shift 21
+
+	block	goto 19
+	stm	goto 79
+
+	.	error
+
+
+state 71:
+
+	stm : IDENT EQUALS exp SEMI .  (reduce by rule 18)
+
+
+
+	.	reduce by rule 18
+
+
+state 72:
+
+	decl : typ IDENT EQUALS exp SEMI .  (reduce by rule 14)
+
+
+
+	.	reduce by rule 14
+
+
+state 73:
+
+	atomic_exp : PRED LPAREN exp RPAREN .  (reduce by rule 38)
+
+
+
+	.	reduce by rule 38
+
+
+state 74:
+
+	atomic_exp : ISZ LPAREN exp RPAREN .  (reduce by rule 39)
+
+
+
+	.	reduce by rule 39
+
+
+state 75:
+
+	atomic_exp : SUCC LPAREN exp RPAREN .  (reduce by rule 37)
+
+
+
+	.	reduce by rule 37
+
+
+state 76:
+
+	func_args : LPAREN exp func_argsf . RPAREN 
+
+	RPAREN	shift 80
+
+
+	.	error
+
+
+state 77:
+
+	func_argsf : COMMA . exp func_argsf 
+
+	IDENT	shift 44
+	TRUE	shift 43
+	FALSE	shift 42
+	ZERO	shift 41
+	NUMBER	shift 40
+	SUCC	shift 39
+	LPAREN	shift 38
+	ISZ	shift 37
+	PRED	shift 36
+
+	exp	goto 81
+	atomic_exp	goto 34
+	func_call	goto 33
+
+	.	error
+
+
+state 78:
+
+	stm : WHILE LPAREN exp RPAREN stm .  (reduce by rule 20)
+
+
+
+	.	reduce by rule 20
+
+error:  state 79: shift/reduce conflict (shift ELSE, reduce by rule 23)
+
+state 79:
+
+	stm : IF LPAREN exp RPAREN stm . elsestm 
+
+	ELSE	shift 83
+
+	elsestm	goto 82
+
+	.	reduce by rule 23
+
+
+state 80:
+
+	func_args : LPAREN exp func_argsf RPAREN .  (reduce by rule 29)
+
+
+
+	.	reduce by rule 29
+
+
+state 81:
+
+	func_argsf : COMMA exp . func_argsf 
+
+	COMMA	shift 77
+
+	func_argsf	goto 84
+
+	.	reduce by rule 30
+
+
+state 82:
+
+	stm : IF LPAREN exp RPAREN stm elsestm .  (reduce by rule 19)
+
+
+
+	.	reduce by rule 19
+
+
+state 83:
+
+	elsestm : ELSE . stm 
+
+	IDENT	shift 25
+	IF	shift 24
+	WHILE	shift 23
+	RETURN	shift 22
+	LBRACE	shift 11
+	SEMI	shift 21
+
+	block	goto 19
+	stm	goto 85
+
+	.	error
+
+
+state 84:
+
+	func_argsf : COMMA exp func_argsf .  (reduce by rule 31)
+
+
+
+	.	reduce by rule 31
+
+
+state 85:
+
+	elsestm : ELSE stm .  (reduce by rule 24)
+
+
+
+	.	reduce by rule 24
+
+
+state 86:
+
+
+	EOF	accept
+
+
+	.	error
+
+75 of 267 action table entries left after compaction
+73 goto table entries

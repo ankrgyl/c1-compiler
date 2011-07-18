@@ -1,0 +1,10 @@
+(* 1 *)
+nat foo(nat x, nat y)
+{
+  return x;
+}
+
+nat main()
+{
+  return foo(1, 2);
+}

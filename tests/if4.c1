@@ -1,0 +1,18 @@
+(* 5 *)
+
+nat main()
+{
+  bool b1 = false;
+  bool b2 = false;
+  bool b3 = false;
+  bool b4 = false;
+  nat n = 0;
+
+  if (b1) n = 1;
+  else if (b2) n = 2;
+  else if (b3) n = 3;
+  else if (b4) n = 4;
+  else n = 5;
+
+  return n;
+}

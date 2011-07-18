@@ -1,0 +1,4 @@
+nat main()
+{
+    return 0;
+}

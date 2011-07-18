@@ -1,0 +1,5 @@
+(* 0 *)
+nat main()
+{
+  return 0;
+}

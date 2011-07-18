@@ -1,0 +1,17 @@
+(* 2 *)
+
+bool not (bool b)
+{
+  bool temp = true;
+  if (b) 
+    temp = false;
+  return b;
+}
+
+nat main()
+{
+  nat x = 1;
+  bool b = not(not(not(not(not(not(not(not(not(not(not(not(true))))))))))));
+  if (b) x = 2;
+  return x;
+}

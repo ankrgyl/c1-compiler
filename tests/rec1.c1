@@ -1,0 +1,14 @@
+nat rec (nat x)
+{
+    nat ret = 0;
+    if (isz(x))
+        ret = 0;
+    else
+        ret = rec(pred(x));
+    return ret;
+}
+
+nat main()
+{
+    return rec(5);
+}

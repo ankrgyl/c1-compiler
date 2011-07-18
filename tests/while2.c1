@@ -1,0 +1,19 @@
+(* 6 *)
+bool not (bool b)
+{
+  bool temp = true;
+  if (b) temp = false;
+  return temp;
+}
+
+nat main ()
+{
+  nat x = 4;
+  nat y = 2;
+  while (not(isz(y)))
+  {
+    x = succ(x);
+    y = pred(y);
+  }
+  return x;
+}

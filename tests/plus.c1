@@ -1,0 +1,24 @@
+(* 7 *)
+bool not(bool b)
+{
+  bool temp = true;
+  if (b) 
+    temp = false; 
+  return temp;
+}
+
+nat plus (nat x, nat y)
+{
+  nat n = y;
+  while (not(isz(x)))
+  {
+    n = succ(n);
+    x = pred(x);
+  }
+  return n;
+}
+
+nat main ()
+{
+  return plus (3, 4);
+}

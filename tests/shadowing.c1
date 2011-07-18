@@ -1,0 +1,7 @@
+(* 3 *)
+nat main()
+{
+  nat main = 2;
+  nat main = 3;
+  return main;
+}
